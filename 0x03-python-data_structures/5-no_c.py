@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def no_c(my_string):
     string_without_C = ""
     for char in my_string:
