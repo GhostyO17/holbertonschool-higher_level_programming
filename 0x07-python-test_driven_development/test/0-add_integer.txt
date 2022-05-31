@@ -1,0 +1,52 @@
+===========================
+testing 0-add_integer.py
+===========================
+
+
+#import the module:
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+#add 2 ints:
+
+>>> add_integer(1, 2)
+3
+
+#error string:
+ 
+ >>> add_integer("a")
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
+
+#Negative:
+
+>>> add_integer(-2, 1)
+-1
+
+#only one parameter(a):
+
+>>> add_integer(10)
+108
+
+#float in a :
+
+>>> add_integer(1234.5, 1)
+1235
+
+#float in b:
+
+>>> add_integer(14, 10.9)
+24
+
+#String as a parameter:
+
+>>> add_integer(5, "hi")
+Traceback (most recent call last):
+TypeError: b must be an integer
+
+#Empty parameter:
+
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
