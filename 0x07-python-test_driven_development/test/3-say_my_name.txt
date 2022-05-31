@@ -1,0 +1,29 @@
+==============================
+testing 3-say_my_name.py
+==============================
+
+#Import module:
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+#Prints full name
+>>> say_my_name("Jhon", "Smith")
+My name is Jhon Smith
+
+#Prints first name only
+>>> say_my_name("Bob")
+My name is Bob 
+
+#Tries to enter an int as last name parameter
+>>> say_my_name("Bob", 12)
+Traceback (most recent call last):
+TypeError: last_name must be a string
+
+#Tries to enter an int as first name parameter
+>>> say_my_name(12, "Smith")
+Traceback (most recent call last):
+TypeError: first_name must be a string
+
+#Empty input
+>>> say_my_name()
+Traceback (most recent call last):
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
