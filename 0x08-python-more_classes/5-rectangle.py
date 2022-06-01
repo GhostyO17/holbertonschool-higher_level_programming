@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" define width and height properties for Rectangle class. """
+"""
+    define width and height properties for Rectangle class.
+"""
 
 
 class Rectangle:
@@ -26,6 +28,10 @@ class Rectangle:
 
     def __repr__(self):
         return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
+
+    """ Delete method """
+    def __del__(self):
+        print("Bye rectangle...")
 
     """ Area and perimeter method. """
     def area(self):
