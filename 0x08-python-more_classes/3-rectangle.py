@@ -4,7 +4,7 @@
 
 class Rectangle:
     """
-    Rectangle with height and width properties. 
+    Rectangle with height and width properties.
     """
 
     def __init__(self, width=0, height=0):
