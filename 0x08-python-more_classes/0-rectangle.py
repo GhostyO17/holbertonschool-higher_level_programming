@@ -3,5 +3,6 @@
 
 
 class Rectangle:
-    def __init__(self) -> None:
-        pass
+    """ Rectangle with height and width properties. """
+
+    pass

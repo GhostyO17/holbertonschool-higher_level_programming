@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    define width and height properties for Rectangle class.
-"""
+""" define width and height properties for Rectangle class. """
 
 
 class Rectangle:
@@ -9,9 +7,38 @@ class Rectangle:
     Rectangle with height and width properties.
     """
 
+
     def __init__(self, width=0, height=0):
         self.height = height
         self.width = width
+
+    """ __str__ & __repr__ Method """
+    def __str__(self):
+        str_n = ""
+        if self.height == 0 or self.width == 0:
+            return str_n
+        for i in range(self.height):
+            for j in range(self.width):
+                str_n += "#"
+            if i == self.height - 1:
+                break
+            str_n += "\n"
+        return str_n
+
+    def __repr__(self):
+        return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
+
+    """ Area and perimeter method. """
+    def area(self):
+        a = int(self.height * self.width)
+        return (a)
+
+    def perimeter(self):
+        if int(self.height) == 0 or int(self.width) == 0:
+            p = 0
+        else:
+            p = int(2 * (self.height + self.width))
+        return (p)
 
     """ Defines property width. """
     @property
