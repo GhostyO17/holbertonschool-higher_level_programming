@@ -8,8 +8,9 @@ class Rectangle:
     """
     Rectangle with height and width properties.
     """
-  
+
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         self.height = height
@@ -23,7 +24,7 @@ class Rectangle:
             return str_n
         for i in range(self.height):
             for j in range(self.width):
-                str_n += "#"
+                str_n += str(self.print_symbol)
             if i == self.height - 1:
                 break
             str_n += "\n"

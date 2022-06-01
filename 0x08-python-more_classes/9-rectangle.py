@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 """
-    define width and height properties for Rectangle class.
+    Rectangle - create a object with contain the width and the height
+    in a rectangle and create two method
+    area()
+    perimeter()
+    __str__
+    __repr__
+    __del__
+    >>> r = Rectangle(2, 3)
 """
 
 
@@ -8,8 +15,8 @@ class Rectangle:
     """
     Rectangle with height and width properties.
     """
-  
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         self.height = height
@@ -23,7 +30,7 @@ class Rectangle:
             return str_n
         for i in range(self.height):
             for j in range(self.width):
-                str_n += "#"
+                str_n += str(self.print_symbol)
             if i == self.height - 1:
                 break
             str_n += "\n"
@@ -48,6 +55,26 @@ class Rectangle:
         else:
             p = int(2 * (self.height + self.width))
         return (p)
+
+    """ Static method """
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        elif not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        else:
+            if rect_1.area() == rect_2.area():
+                return rect_1
+            elif rect_1.area() < rect_2.area():
+                return rect_2
+            else:
+                return rect_1
+
+    """ Class method """
+    @classmethod
+    def square(cls, size=0):
+        return Rectangle(size, size)
 
     """ Defines property width. """
     @property
