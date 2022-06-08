@@ -1,8 +1,15 @@
 #!/usr/bin/python3
-""" Prints a list in ascending sort """
+"""
+Define subclass
+"""
 
 
-def print_sorted(self):
-    """ print_sorted returns a print list sorted in ascending order. """
+class MyList(list):
+    """
+    Method that prints the list, but sorted
+    """
     def print_sorted(self):
-        return print(sorted(self))
+        """
+        Returns: list printed
+        """
+        return (print(sorted(self)))
