@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+"""
+Creates rectangle class
+"""
+
+from models.base import Base
+
+
+class Rectangle(Base):
+    """
+    Creates rectangle class with several attributes
+    """
+    def __init__(self, width, height, x=0, y=0, id=None):
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
+        super().id
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        self.width = value
+
+    @property
+    def heigth(self):
+        return self.__height
+
+    @heigth.setter
+    def height(self, value):
+        self.heigth = value
+
+    @property
+    def x(self):
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        self.__x = value
