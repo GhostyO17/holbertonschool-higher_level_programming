@@ -20,7 +20,7 @@ class Rectangle(Base):
         self.__height = height
         self.__x = x
         self.__y = y
-        super().__init__id
+        super().__init__(id)
 
     def integer_validator(self, value, name):
         if type(value) != (int):
