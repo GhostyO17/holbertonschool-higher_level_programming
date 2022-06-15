@@ -4,7 +4,6 @@ Define class
 """
 
 
-
 class Base:
     """
     Base class
