@@ -3,6 +3,7 @@
 Creates rectangle class
 """
 
+
 from models.base import Base
 
 
@@ -67,6 +68,18 @@ class Rectangle(Base):
         self.__y = value
     
     def area(self):
-        return self.width * self.height
+        return (self.__width * self.__height)
 
+    def display(self):
+        if self.__height > 0:
+            for i in range(self.__height):
+                print(end='')
 
+        for i in range(self.__height):
+            if self.__width > 0:
+                print(end='')
+
+            for j in range(self.__width):
+                print('#', end='')
+
+            print()
