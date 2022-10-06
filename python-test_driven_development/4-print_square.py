@@ -4,7 +4,6 @@ A function that prints a square made of '#'
 """
 
 
-
 def print_square(size):
     """A function that prints a square made of '#'
     """
