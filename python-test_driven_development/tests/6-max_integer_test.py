@@ -1,98 +1,35 @@
 #!/usr/bin/python3
-"""unittests for 6-max_integer
+"""Unittest for max_integer([..])
 """
-
-def max_integer(list=[]):
-    """Function to find and return the max integer in a list of integers
-        If the list is empty, the function returns None
-    """
-    if len(list) == 0:
-        return None
-    result = list[0]
-    i = 1
-    while i < len(list):
-        if list[i] > result:
-            result = list[i]
-        i += 1
-    return result
-
-
 import unittest
-
 max_integer = __import__('6-max_integer').max_integer
 
 
-class testing_max_integer(unittest.TestCase):
-    """Class test
-    Arguments:
-        unittest {[type]} -- [description]
+class TestMaxInteger(unittest.TestCase):
     """
-    def test_middle(self):
-        """test_middle
+    Class that tests max_integer function
+    """
+    def test_max_integer(self):
         """
-        self.assertAlmostEquals(max_integer([1, 2, 5, 4]), 5)
-
-    def test_end(self):
-        """test_middle
+        Module that tests with proper values as args
         """
-        self.assertAlmostEquals(max_integer([1, 2, 4, 5]), 5)
+        self.assertAlmostEqual(max_integer([1, 2, 3, 4]), 4)
+        self.assertAlmostEqual(max_integer([-10, -5, -3, -1, 0]), 0)
+        self.assertAlmostEqual(max_integer([1.5, 1.2, 2.3, 4.0]), 4.0)
+        self.assertAlmostEqual(max_integer([10]), 10)
 
-    def test_beginning(self):
-        """test_middle
+    def test_len(self):
         """
-        self.assertAlmostEquals(max_integer([5, 2, 4, 2]), 5)
-
-    def test_only_negative_numbers(self):
-        """test_middle
+        Module that tests when there's no args in function
         """
-        self.assertAlmostEquals(max_integer([-1, -3, -100, -4]), -1)
+        self.assertIsNone(max_integer([]))
 
-    def test_floats(self):
-        """test_middle
+    def test_errors(self):
         """
-        self.assertAlmostEqual(max_integer([1.1, 2.2, 3.3, 4.4]), 4.4)
-
-    def test_one_negative_number(self):
-        """test_middle
+        Module that tests for errors
         """
-        self.assertAlmostEquals(max_integer([-100]), -100)
+        with self.assertRaises(TypeError):
+            max_integer(None)
 
-    def test_one_number(self):
-        """test_middle
-        """
-        self.assertAlmostEquals(max_integer([100]), 100)
-
-    def test_empty(self):
-        """test_middle
-        """
-        self.assertAlmostEqual(max_integer([]), None)
-
-    def test_not_list(self):
-
-        wi = [1, 2, "mao", 4]
-        self.assertRaises(TypeError)
-
-        wi = [1, 2, [1, 2, 3], 4]
-        self.assertRaises(TypeError)
-
-        wi = [1, 2, (1, 2, 3), 4]
-        self.assertRaises(TypeError)
-
-        wi = (2, 2)
-        self.assertRaises(TypeError)
-
-        wi = "hello"
-        self.assertRaises(TypeError)
-
-    def test_none_and_zero(self):
-
-        wi = []
-        self.assertAlmostEqual(max_integer(wi), None)
-
-        wi = [0, 0, 0, 0]
-        self.assertAlmostEqual(max_integer(wi), 0)
-
-        self.assertAlmostEqual(max_integer(), None)
-
-if __name__ == '__main__':
-    unittest.main()
+        with self.assertRaises(TypeError):
+            max_integer(["Hello", 24, "I'm", 12, "a", 53, "string"])
