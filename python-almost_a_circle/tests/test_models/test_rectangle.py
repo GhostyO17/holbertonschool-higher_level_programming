@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import unittest
 from models.rectangle import Rectangle
-""" TestArea - To prube the class base
+""" TestArea - To prove the class base
 """
 
 
@@ -37,7 +37,7 @@ class TestArea(unittest.TestCase):
             Rectangle(None,None)
         with self.assertRaises(ValueError):
             Rectangle(-1, 2)
-            Rectnagle(1, -2)
+            Rectangle(1, -2)
     
     if __name__ == '__main__':
         unittest.main()

@@ -2,7 +2,7 @@
 import unittest
 from models.base import Base
 """ 
-TestBase - To prube the class base
+TestBase - To prove the class base
 """
 
 
