@@ -1,111 +1,81 @@
 #!/usr/bin/python3
-import unittest
-from models.base import Base
-""" 
-TestBase - To prove the class base
+"""
+Unittest for Class Base
 """
 
 
-class TestBase(unittest.TestCase):
+from models.base import Base
+import unittest
 
-    def setUp(self):
-        """
-        setUp - set up the private value
-        __nb_objects = 0
-        """
-        Base._Base__nb_objects = 0
 
-    def test_id(self):
-        """
-        test_id - test the id
-        """
-        in_1 = Base()
-        self.assertEqual(in_1.id, 1)
-        
-    def test_instance(self):
-        """
-        test_instance - test the instance id
-        """
-        in_1 = Base()
-        in_2 = Base()
-        in_3 = Base()
-        in_4 = Base()
-        in_5 = Base()
-        in_6 = Base()
-        in_7 = Base()
-        in_8 = Base()
-        in_9 = Base()
-        self.assertEqual(in_9.id, 9)
-    
-    def test_id_value(self):
-        """
-        test_id_value - change the id
-        """
-        in_1 = Base(10)
-        self.assertEqual(in_1.id, 10)
-    
-    def test_negative_number(self):
-        """
-        test_negative_number - change
-        the id for negative number
-        """
-        in_1 = Base(-1)
-        self.assertEqual(in_1.id, -1)
-    
-    def test_string(self):
-        """
-        test_string - change the id for
-        a string
-        """
-        in_1 = Base("String")
-        self.assertEqual(in_1.id, "String")
+class TetsBaseClass(unittest.TestCase):
+    """Test cases for the Base class"""
+    base_1 = Base()
+    base_2 = Base()
+    base_3 = Base(5)
 
-    def test_dict_base(self):
-        """
-        test_dict_base - change the id
-        for dict
-        """
-        in_1 = Base({id: 1})
-        self.assertEqual(in_1.id, {id: 1})
-    
-    def test_float_base(self):
-        """
-        test_float_base - change the id
-        for float nul
-        """
-        in_1 = Base(float('NaN'))
-        self.assertNotEqual(in_1.id, in_1.id)
-    
-    def test_list(self):
-        """
-        test_list - change the id
-        for list
-        """
-        in_1 = Base([420])
-        self.assertEqual(in_1.id, [420])
+    def test_positive_numbers(self):
+        """test number more or equal greather than zero"""
+        base1 = Base(1)
+        self.assertEqual(base1.id, 1)
+        base2 = Base(2)
+        self.assertEqual(base2.id, 2)
+        base3 = Base(0)
+        self.assertEqual(base3.id, 0)
 
-    def test_float2(self):
-        """
-        test_float2 - change id to
-        float number
-        """
-        in_1 = Base(3.14)
-        self.assertEqual(in_1.id, 3.14)
-        
-    def test_tuple(self):
-        """
-        test_tuple - change the id for a tuple
-        """
-        in_1 = Base((6, 9))
-        self.assertEqual(in_1.id, (6, 9))
-    
-    def test_array(self):
-        """
-        test_array - change the id to
-        array
-        """
-        in_1 = Base({4, 2, 0})
-        self.assertEqual(in_1.id, {0, 2, 4})
+    def test_none_value(self):
+        """None value to id"""
+        base1 = Base()
+        self.assertEqual(base1.id, 3)
+        base2 = Base()
+        self.assertEqual(base2.id, 4)
+        base3 = Base()
+        self.assertEqual(base3.id, 5)
+        base4 = Base()
+        self.assertEqual(base4.id, 6)
+        base5 = Base()
+        self.assertEqual(base4.id, 6)
+        self.assertEqual(base5.id, 7)
 
-if __name__ == '__main__':
+    def test_negative_numbers(self):
+        """test number less than zero"""
+        base1 = Base(-1)
+        self.assertEqual(base1.id, -1)
+        base2 = Base(-1024)
+        self.assertEqual(base2.id, -1024)
+        base3 = Base(-34)
+        self.assertEqual(base3.id, -34)
+
+    def test_base_tojsonstringnone(self):
+        ret = "[]"
+        test_list = self.base_1.to_json_string(None)
+        self.assertEqual(ret, test_list)
+
+    def test_base_tojsonstringempty(self):
+        ret = "[]"
+        test_list = self.base_1.to_json_string([])
+        self.assertEqual(ret, test_list)
+
+    def test_base_tojsonstringdict(self):
+        test_dict = [{'id': 7}]
+        ret = "[{\"id\": 7}]"
+        self.assertEqual(self.base_1.to_json_string(test_dict), ret)
+
+    def test_base_fromjsonstringnone(self):
+        ret = []
+        test_list = self.base_1.from_json_string(None)
+        self.assertEqual(ret, test_list)
+
+    def test_base_fromjsonstringempty(self):
+        ret = []
+        test_list = self.base_1.from_json_string("[]")
+        self.assertEqual(ret, test_list)
+
+    def test_base_fromjsonstringdict(self):
+        ret = [{'id': 7}]
+        test_dict = "[{\"id\": 7}]"
+        self.assertEqual(self.base_1.from_json_string(test_dict), ret)
+
+
+if __name__ == "__main__":
     unittest.main()

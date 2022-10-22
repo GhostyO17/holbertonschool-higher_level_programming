@@ -1,24 +1,19 @@
 #!/usr/bin/python3
 """
-Creates rectangle class
+Mudule: rectangle.py
+Unittest: tests/test_rectangle.py
 """
-
 
 from models.base import Base
 
 
 class Rectangle(Base):
-    """
-    Creates rectangle class with several attributes
-    """
-    def __init__(self, width, height, x=0, y=0, id=None):
-        """
-        Rectangle args
-        """
-        self.integer_validator(width, "width")
-        self.integer_validator(height, "height")
-        self.integer_validator(x, "x")
-        self.integer_validator(y, "y")
+    """Returns the width attributes"""
+    def __init__(self, width, height, x=0, y=0, id=None,):
+        self.staticfunc(width, "width")
+        self.staticfunc(height, "height")
+        self.staticfunc(x, "x")
+        self.staticfunc(y, "y")
 
         self.__width = width
         self.__height = height
@@ -26,87 +21,32 @@ class Rectangle(Base):
         self.__y = y
         super().__init__(id)
 
-    def integer_validator(self, value, name):
-        """
-        Validates if input is correct
-        """
+    @staticmethod
+    def staticfunc(value, name_met):
+        """private Static method"""
         if type(value) != (int):
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0 and name in ("width", "height"):
-            raise ValueError(f"{name} must be > 0")
-        if value < 0 and name in ("x", "y"):
-            raise ValueError(f"{name} must be >= 0")
+            raise TypeError(f"{name_met} must be an integer")
+        if value <= 0 and name_met in ("width", "height"):
+            raise ValueError(f"{name_met} must be > 0")
+        if value < 0 and name_met in ("x", "y"):
+            raise ValueError(f"{name_met} must be >= 0")
 
-    @property
-    def width(self):
-        """
-        Width property of the rectangle
-        """
-        return self.__width
-
-    @width.setter
-    def width(self, value):
-        """
-        Width setter for the propperty
-        """
-        self.integer_validator(value, "width")
-        self.width = value
-
-    @property
-    def heigth(self):
-        """
-        Height property of the rectangle
-        """
-        return self.__height
-
-    @heigth.setter
-    def height(self, value):
-        """
-        height setter for the propperty
-        """
-        self.integer_validator(value, "height")
-        self.heigth = value
-
-    @property
-    def x(self):
-        """
-        X property of the rectangle
-        """
-        return self.__x
-
-    @x.setter
-    def x(self, value):
-        """
-        x setter for the propperty
-        """
-        self.integer_validator(value, "x")
-        self.__x = value
-
-    @property
-    def y(self):
-        """
-        Y property of the rectangle
-        """
-        return self.__x
-
-    @y.setter
-    def y(self, value):
-        """
-        y setter for the propperty
-        """
-        self.integer_validator(value, "y")
-        self.__y = value
+    def to_dictionary(self):
+        """return a dictionary"""
+        return {
+            'x': self.x,
+            'y': self.y,
+            'id': self.id,
+            'height': self.height,
+            'width': self.width
+            }
 
     def area(self):
-        """
-        Returns the area of the rectangle
-        """
-        return (self.__width * self.__height)
+        """Returns the area of rectangle"""
+        return self.__height * self.__width
 
     def display(self):
-        """
-        displays in the stdout the rectangle
-        """
+        """Prints a rectangle to stdout"""
         if self.__y > 0:
             for h in range(self.__y):
                 print()
@@ -117,10 +57,66 @@ class Rectangle(Base):
                 print("#", end="")
             print()
 
+    @property
+    def width(self):
+        """Returns the width attribute"""
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        self.staticfunc(value, "width")
+        self.__width = value
+
+    @property
+    def height(self):
+        """Returns the height attribute"""
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """setter of height"""
+        self.staticfunc(value, "height")
+        self.__height = value
+
+    @property
+    def x(self):
+        """Returns the x attribute"""
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        """setter of x"""
+        self.staticfunc(value, "x")
+        self.__x = value
+
+    @property
+    def y(self):
+        """Returns the y attribute"""
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        """setter of y"""
+        self.staticfunc(value, "y")
+        self.__y = value
+
     def __str__(self):
-        """
-        Creates custom __str__ method
-        """
-        return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
-            self.id, self.x, self.y, self.width, self.height
-        )
+        """Returns a string representation of a Rectangle"""
+        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y}\
+ - {self.__width}/{self.__height}")
+
+    def update(self, *args, **kwargs):
+        """Updates rectangle values"""
+        if len(args) == 0:
+            for key in kwargs:
+                setattr(self, key, kwargs[key])
+        else:
+            tupla = [
+                "id",
+                "width",
+                "height",
+                "x",
+                "y"
+            ]
+            for i in range(len(args)):
+                setattr(self, tupla[i], args[i])
